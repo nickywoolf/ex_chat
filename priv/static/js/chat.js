@@ -204,7 +204,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(13);
+module.exports = __webpack_require__(15);
 
 
 /***/ }),
@@ -11785,7 +11785,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(9)
 /* template */
-var __vue_template__ = __webpack_require__(12)
+var __vue_template__ = __webpack_require__(14)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11829,10 +11829,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateRoom_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateRoom_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateRoom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CreateRoom_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WebsocketMessage_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__WebsocketMessage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__WebsocketMessage_vue__);
 //
 //
 //
@@ -11865,6 +11867,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -11872,7 +11877,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         CreateRoom: __WEBPACK_IMPORTED_MODULE_0__CreateRoom_vue___default.a,
-        WebsocketConnection: __WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue___default.a
+        WebsocketConnection: __WEBPACK_IMPORTED_MODULE_1__WebsocketConnection_vue___default.a,
+        WebsocketMessage: __WEBPACK_IMPORTED_MODULE_2__WebsocketMessage_vue___default.a
     }
 });
 
@@ -11884,225 +11890,6 @@ var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(11)
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "js/components/WebsocketConnection.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a9221358", Component.options)
-  } else {
-    hotAPI.reload("data-v-a9221358", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            uri: null,
-            websocket: null
-        };
-    },
-    created: function created() {
-        this.initializeData();
-        this.connect();
-    },
-
-    methods: {
-        connect: function connect() {
-            this.websocket = new WebSocket(this.uri);
-
-            this.websocket.onopen = function (event) {
-                // do something...
-            };
-
-            this.websocket.onclose = function (event) {
-                // do something...
-            };
-
-            this.websocket.onmessage = function (message) {
-                // do something...
-            };
-
-            this.websocket.onerror = function (error) {
-                // do something...
-            };
-        },
-        initializeData: function initializeData() {
-            var query = new URLSearchParams(location.search);
-            var accessToken = query.get("access_token");
-            this.uri = "ws://" + location.host + "/chat?access_token=" + accessToken;
-        }
-    },
-    render: function render() {
-        var _this = this;
-
-        return this.$scopedSlots.default({
-            send: function send(message) {
-                return _this.websocket.send(JSON.stringify(message));
-            }
-        });
-    }
-});
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("websocket-connection", {
-    scopedSlots: _vm._u([
-      {
-        key: "default",
-        fn: function(websocket) {
-          return _c(
-            "div",
-            {},
-            [
-              _c("create-room", {
-                attrs: { websocket: websocket },
-                scopedSlots: _vm._u([
-                  {
-                    key: "default",
-                    fn: function(ref) {
-                      var inputProps = ref.inputProps
-                      var inputEvents = ref.inputEvents
-                      var buttonEvents = ref.buttonEvents
-                      return _c("div", { staticClass: "mb-3" }, [
-                        _c(
-                          "input",
-                          _vm._g(
-                            _vm._b(
-                              {
-                                staticClass: "border mr-2 px-4 py-2 rounded-sm",
-                                attrs: { type: "text" }
-                              },
-                              "input",
-                              inputProps,
-                              false
-                            ),
-                            inputEvents
-                          )
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          _vm._g(
-                            {
-                              staticClass:
-                                "bg-blue px-4 py-2 rounded-sm text-white"
-                            },
-                            buttonEvents
-                          ),
-                          [_vm._v("Create room")]
-                        )
-                      ])
-                    }
-                  }
-                ])
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "bg-blue px-4 py-2 rounded-sm text-white",
-                  on: {
-                    click: function($event) {
-                      websocket.send({ command: "join", room: "default" })
-                    }
-                  }
-                },
-                [_vm._v("Join room")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "bg-blue px-4 py-2 rounded-sm text-white",
-                  on: {
-                    click: function($event) {
-                      websocket.send({
-                        room: "default",
-                        message: "a new message"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("Send Message")]
-              )
-            ],
-            1
-          )
-        }
-      }
-    ])
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b17674d8", module.exports)
-  }
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(19)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -12143,7 +11930,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 19 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12153,8 +11940,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ["websocket"],
     data: function data() {
         return {
-            input: ""
+            input: "",
+            message: null
         };
+    },
+    watch: {
+        "websocket.message": function websocketMessage(val, oldVal) {
+            this.message = val;
+        }
     },
     methods: {
         createRoom: function createRoom() {
@@ -12184,6 +11977,321 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     e.preventDefault();
                     _this.createRoom();
                 }
+            }
+        });
+    }
+});
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(13)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "js/components/WebsocketConnection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a9221358", Component.options)
+  } else {
+    hotAPI.reload("data-v-a9221358", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            uri: null,
+            websocket: null,
+            open: null,
+            message: null,
+            error: null
+        };
+    },
+    created: function created() {
+        this.createUri();
+        this.connect();
+        this.addCallbacks();
+    },
+
+    methods: {
+        addCallbacks: function addCallbacks() {
+            var _this = this;
+
+            this.websocket.onopen = function (event) {
+                return _this.open = true;
+            };
+            this.websocket.onclose = function (event) {
+                return _this.open = false;
+            };
+
+            this.websocket.onmessage = function (message) {
+                _this.message = JSON.parse(message.data);
+            };
+
+            this.websocket.onerror = function (error) {
+                _this.error = JSON.parse(error.data);
+            };
+        },
+        connect: function connect() {
+            this.websocket = new WebSocket(this.uri);
+        },
+        createUri: function createUri() {
+            var query = new URLSearchParams(location.search);
+            var accessToken = query.get("access_token");
+            this.uri = "ws://" + location.host + "/chat?access_token=" + accessToken;
+        }
+    },
+    render: function render() {
+        var _this2 = this;
+
+        return this.$scopedSlots.default({
+            send: function send(message) {
+                return _this2.websocket.send(JSON.stringify(message));
+            },
+            open: this.open,
+            message: this.message,
+            error: this.error
+        });
+    }
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("websocket-connection", {
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(websocket) {
+          return _c("websocket-message", {
+            attrs: { "original-message": websocket.message },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var message = ref.message
+                  return _c(
+                    "div",
+                    {},
+                    [
+                      _c("p", [_vm._v(_vm._s(message.command))]),
+                      _vm._v(" "),
+                      _c("create-room", {
+                        attrs: { websocket: websocket },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(ref) {
+                              var inputProps = ref.inputProps
+                              var inputEvents = ref.inputEvents
+                              var buttonEvents = ref.buttonEvents
+                              return _c("div", { staticClass: "mb-3" }, [
+                                _c(
+                                  "input",
+                                  _vm._g(
+                                    _vm._b(
+                                      {
+                                        staticClass:
+                                          "border mr-2 px-4 py-2 rounded-sm",
+                                        attrs: { type: "text" }
+                                      },
+                                      "input",
+                                      inputProps,
+                                      false
+                                    ),
+                                    inputEvents
+                                  )
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  _vm._g(
+                                    {
+                                      staticClass:
+                                        "bg-blue px-4 py-2 rounded-sm text-white"
+                                    },
+                                    buttonEvents
+                                  ),
+                                  [_vm._v("Create room")]
+                                )
+                              ])
+                            }
+                          }
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-blue px-4 py-2 rounded-sm text-white",
+                          on: {
+                            click: function($event) {
+                              websocket.send({
+                                command: "join",
+                                room: "default"
+                              })
+                            }
+                          }
+                        },
+                        [_vm._v("Join room")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "bg-blue px-4 py-2 rounded-sm text-white",
+                          on: {
+                            click: function($event) {
+                              websocket.send({
+                                room: "default",
+                                message: "a new message"
+                              })
+                            }
+                          }
+                        },
+                        [_vm._v("Send Message")]
+                      )
+                    ],
+                    1
+                  )
+                }
+              }
+            ])
+          })
+        }
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b17674d8", module.exports)
+  }
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(21)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "js/components/WebsocketMessage.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f13c9ffe", Component.options)
+  } else {
+    hotAPI.reload("data-v-f13c9ffe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["originalMessage"],
+    render: function render() {
+        return this.$scopedSlots.default({
+            message: {
+                success: true,
+                command: "create",
+                room: "a room",
+                errors: []
             }
         });
     }

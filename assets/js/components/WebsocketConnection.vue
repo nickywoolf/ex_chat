@@ -2,33 +2,33 @@
 export default {
     data: () => ({
         uri: null,
-        websocket: null
+        websocket: null,
+        open: null,
+        message: null,
+        error: null
     }),
     created() {
-        this.initializeData();
+        this.createUri();
         this.connect();
+        this.addCallbacks();
     },
     methods: {
-        connect() {
-            this.websocket = new WebSocket(this.uri);
-
-            this.websocket.onopen = event => {
-                // do something...
-            };
-
-            this.websocket.onclose = event => {
-                // do something...
-            };
+        addCallbacks() {
+            this.websocket.onopen = event => (this.open = true);
+            this.websocket.onclose = event => (this.open = false);
 
             this.websocket.onmessage = message => {
-                // do something...
+                this.message = JSON.parse(message.data);
             };
 
             this.websocket.onerror = error => {
-                // do something...
+                this.error = JSON.parse(error.data);
             };
         },
-        initializeData() {
+        connect() {
+            this.websocket = new WebSocket(this.uri);
+        },
+        createUri() {
             const query = new URLSearchParams(location.search);
             const accessToken = query.get("access_token");
             this.uri = `ws://${location.host}/chat?access_token=${accessToken}`;
@@ -36,7 +36,10 @@ export default {
     },
     render() {
         return this.$scopedSlots.default({
-            send: message => this.websocket.send(JSON.stringify(message))
+            send: message => this.websocket.send(JSON.stringify(message)),
+            open: this.open,
+            message: this.message,
+            error: this.error
         });
     }
 };

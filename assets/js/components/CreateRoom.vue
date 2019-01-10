@@ -2,8 +2,14 @@
 export default {
     props: ["websocket"],
     data: () => ({
-        input: ""
+        input: "",
+        message: null
     }),
+    watch: {
+        "websocket.message"(val, oldVal) {
+            this.message = val;
+        }
+    },
     methods: {
         createRoom() {
             this.websocket.send({ command: "create", room: this.input });
