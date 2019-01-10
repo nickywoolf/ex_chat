@@ -12285,14 +12285,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ["originalMessage"],
+    computed: {
+        message: function message() {
+            if (this.originalMessage.hasOwnProperty("success")) {
+                return {
+                    success: true,
+                    command: "create",
+                    room: "a room",
+                    errors: []
+                };
+            } else {
+                return {
+                    success: false,
+                    command: "create",
+                    room: "a room",
+                    errors: ["already exists"]
+                };
+            }
+        }
+    },
     render: function render() {
         return this.$scopedSlots.default({
-            message: {
-                success: true,
-                command: "create",
-                room: "a room",
-                errors: []
-            }
+            message: this.message
         });
     }
 });
