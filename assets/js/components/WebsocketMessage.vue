@@ -22,16 +22,33 @@ export default {
             }
 
             if (this.originalMessage.error) {
-                const match = this.originalMessage.error.match(
-                    /^(.*) already exists$/
-                );
+                const create = /^(.*) already exists$/;
+                const joined = /^you already joined the (.*) room!$/;
+
+                let command;
+                let room;
+                let errors = [];
+
+                if (create.test(this.originalMessage.error)) {
+                    const match = this.originalMessage.error.match(create);
+                    command = "create";
+                    room = match[1];
+                    errors = [this.originalMessage.error];
+                }
+
+                if (joined.test(this.originalMessage.error)) {
+                    const match = this.originalMessage.error.match(joined);
+                    command = "join";
+                    room = match[1];
+                    errors = [this.originalMessage.error];
+                }
 
                 return {
                     success: false,
-                    command: "create",
-                    room: match[1],
+                    command: command,
+                    room: room,
                     body: false,
-                    errors: [this.originalMessage.error]
+                    errors: errors
                 };
             }
 

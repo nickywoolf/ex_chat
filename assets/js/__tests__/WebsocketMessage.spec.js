@@ -24,7 +24,9 @@ const slot = [
 describe("WebsocketMessage.vue", () => {
     it("converts room created message to object", () => {
         const wrapper = mount(WebsocketMessage, {
-            propsData: { originalMessage: { success: "ChatRoom has been created!" } },
+            propsData: {
+                originalMessage: { success: "ChatRoom has been created!" }
+            },
             scopedSlots: { default: slot }
         })
 
@@ -77,6 +79,26 @@ describe("WebsocketMessage.vue", () => {
             'command: join',
             'room: ChatRoom',
             'message: welcome to the ChatRoom chat room, username',
+            '</div>'
+        ].join(''))
+    })
+
+    it("converts already joined error to object", () => {
+        const wrapper = mount(WebsocketMessage, {
+            propsData: {
+                originalMessage: { error: "you already joined the ChatRoom room!" }
+            },
+            scopedSlots: { default: slot }
+        })
+
+
+        expect(wrapper.html()).toBe([
+            '<div>',
+            'error!',
+            'you already joined the ChatRoom room!',
+            'command: join',
+            'room: ChatRoom',
+            '<!---->',
             '</div>'
         ].join(''))
     })
