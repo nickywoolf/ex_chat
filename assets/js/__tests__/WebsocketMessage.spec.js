@@ -71,7 +71,6 @@ describe("WebsocketMessage.vue", () => {
             scopedSlots: { default: slot }
         })
 
-
         expect(wrapper.html()).toBe([
             '<div>',
             'success!',
@@ -91,11 +90,29 @@ describe("WebsocketMessage.vue", () => {
             scopedSlots: { default: slot }
         })
 
-
         expect(wrapper.html()).toBe([
             '<div>',
             'error!',
             'you already joined the ChatRoom room!',
+            'command: join',
+            'room: ChatRoom',
+            '<!---->',
+            '</div>'
+        ].join(''))
+    })
+
+    it("converts room does not exist error to object", () => {
+        const wrapper = mount(WebsocketMessage, {
+            propsData: {
+                originalMessage: { error: "ChatRoom does not exists" }
+            },
+            scopedSlots: { default: slot }
+        })
+
+        expect(wrapper.html()).toBe([
+            '<div>',
+            'error!',
+            'ChatRoom does not exists',
             'command: join',
             'room: ChatRoom',
             '<!---->',

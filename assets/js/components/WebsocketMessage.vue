@@ -24,6 +24,7 @@ export default {
             if (this.originalMessage.error) {
                 const create = /^(.*) already exists$/;
                 const joined = /^you already joined the (.*) room!$/;
+                const unexisting = /^(.*) does not exists$/;
 
                 let command;
                 let room;
@@ -38,6 +39,13 @@ export default {
 
                 if (joined.test(this.originalMessage.error)) {
                     const match = this.originalMessage.error.match(joined);
+                    command = "join";
+                    room = match[1];
+                    errors = [this.originalMessage.error];
+                }
+
+                if (unexisting.test(this.originalMessage.error)) {
+                    const match = this.originalMessage.error.match(unexisting);
                     command = "join";
                     room = match[1];
                     errors = [this.originalMessage.error];
