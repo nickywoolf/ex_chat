@@ -12171,10 +12171,7 @@ var render = function() {
                             "bg-blue px-4 py-2 rounded-sm text-white",
                           on: {
                             click: function($event) {
-                              websocket.send({
-                                command: "join",
-                                room: "default"
-                              })
+                              websocket.send({ command: "join", room: "xyz" })
                             }
                           }
                         },
@@ -12287,7 +12284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ["originalMessage"],
     computed: {
         message: function message() {
-            if (this.originalMessage.hasOwnProperty("success")) {
+            if (this.originalMessage && this.originalMessage.hasOwnProperty("success")) {
                 return {
                     success: true,
                     command: "create",

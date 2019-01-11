@@ -19,7 +19,7 @@
                 </create-room>
 
                 <button
-                    @click="websocket.send({command: 'join', room: 'default'})"
+                    @click="websocket.send({command: 'join', room: 'xyz'})"
                     class="bg-blue px-4 py-2 rounded-sm text-white"
                 >Join room</button>
                 
